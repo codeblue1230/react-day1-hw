@@ -10,13 +10,19 @@ import { Drawer as MUIDrawer,
     Divider,
     Button,
     CssBaseline, 
-    Box
+    Box,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { ChevronRight,ChevronLeft } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { theme } from '../../Theme/themes'
-// Add Theming
+import { DataTable } from "../DataTable/DataTable";
+import { GameForm } from "../GameForm";
 
 const drawerWidth = 240;
 
@@ -84,6 +90,7 @@ const myStyles = {
 export const Dashboard = () => {
     const navigate = useNavigate();
     const [ open, setOpen] = useState(false);
+    const [ dialogOpen, setDialogOpen ] = useState(false)
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -91,6 +98,14 @@ export const Dashboard = () => {
 
     const handleDrawerClose = () => {
         setOpen(false)
+    }
+
+    const handleDialogOpen = () => {
+        setDialogOpen(true)
+    }
+
+    const handleDialogClose = () => {
+        setDialogOpen(false)
     }
 
     const itemsList = [
@@ -120,7 +135,18 @@ export const Dashboard = () => {
                     <MenuIcon/>
                 </IconButton>
                 <Typography variant="h6" noWrap>Dashboard</Typography>
-                <Button sx={myStyles.toolbarButton}>Create a Drone</Button>
+                <Button onClick={handleDialogOpen} sx={myStyles.toolbarButton}>Add A Game</Button>
+                {/* Create Game Dialog Popup */}
+                <Dialog open={dialogOpen} onClose={handleDialogClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id='form-dialog-title'>Add New Game</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>Enter Game Info Here</DialogContentText>
+                        <GameForm/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDialogClose} color="error">Cancel</Button>
+                    </DialogActions>
+                </Dialog>
             </Toolbar>
             </AppBar>
             <MUIDrawer
@@ -149,7 +175,8 @@ export const Dashboard = () => {
             </MUIDrawer>
             <Box sx={myStyles.content}>
                 <Box sx={myStyles.drawerHeader}/>
-                <Typography variant="h1">Data Table will be placed here</Typography>
+                <Typography variant="h1">Add Games Here</Typography>
+                <DataTable/>
             </Box>
         </Box>
     )
