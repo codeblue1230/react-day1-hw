@@ -101,6 +101,7 @@ export const Home = (props: Props) => {
                     <h1>{props.title}</h1>
                     <p>Welcome to our Game page!!!</p>
                     <Button color='warning' variant='contained' component={Link} to='/dashboard'>See The Games</Button>
+                    <Button color='warning' variant='contained' component={Link} to='/rate'>Game Ratings</Button>
                 </MainText>
             </Main>
         </Root>

@@ -8,7 +8,7 @@ import { FirebaseAppProvider } from 'reactfire'
 import 'firebase/auth'
 
 // Internal Imports
-import { Home, Dashboard, SignIn, SignUp } from './components/index'
+import { Home, Dashboard, SignIn, SignUp, Rate } from './components/index'
 import './index.css'
 import { theme } from './Theme/themes'
 import { store } from './redux/store'
@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                             <Route path='/dashboard' element={<Dashboard/>}/>
                             <Route path='/signin' element={<SignIn/>}/>
                             <Route path='/signup' element={<SignUp/>}/>
+                            <Route path='/rate' element={<Rate/>}/>
                         </Routes>
                     </Router>
                 </ThemeProvider>
